@@ -1,7 +1,26 @@
-@import '~bootstrap/scss/bootstrap';
-
 $color-red: rgb(255, 20, 20);
 
-p {
-  color: $color-red;
+.card-body {
+  height: 175px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+#game-details {
+  position: relative;
+  text-align: center;
+}
+
+#game-title {
+  position: absolute;
+  top: 120px; /* adjust as needed */
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  font-size: 500% ;
 }
