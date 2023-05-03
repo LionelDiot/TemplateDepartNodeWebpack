@@ -1,8 +1,28 @@
-$color-red: rgb(255, 20, 20);
+@font-face {
+  font-family: 'Bungee';
+  src: url('../assets/font/BungeeOutline-Regular.ttf');
+}
+
+a {
+  text-decoration: none !important;
+  
+}
+
+a:hover {
+  text-decoration: underline !important;
+  
+}
+
+
+body {
+  background-image: url('../assets/image/background.jpg');
+}
+
 
 .card-body {
   height: 175px;
   overflow: hidden;
+  background-image: url('../assets/image/background2.jpg')
 }
 
 .card-img-top {
@@ -22,5 +42,6 @@ $color-red: rgb(255, 20, 20);
   right: 0;
   margin: auto;
   color: white;
-  font-size: 500% ;
+  font-size: 450% ;
+  font-family: 'Bungee';
 }

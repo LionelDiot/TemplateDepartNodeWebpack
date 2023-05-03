@@ -1,4 +1,6 @@
-const PageDetail = (argument) => {
+import { API_KEY } from "./PageList.js";
+
+export const PageDetail = (argument) => {
   const preparePage = () => {
     const cleanedArgument = argument.trim().replace(/\s+/g, "-");
     const articleDOM = document.querySelector(".page-detail .article");
@@ -15,6 +17,7 @@ const PageDetail = (argument) => {
         tags,
         website,
         clip,
+        stores,
         metacritic,
       } = gameData;
 
@@ -40,7 +43,7 @@ const PageDetail = (argument) => {
       // developers
       const developersDOM = document.createElement("p");
       const devLinks = developers.map((dev) => {
-        return `<a href="#pagelist/${dev.slug}">${dev.name}</a>`;
+        return `<a href="#pagelist/${dev.id}/developers">${dev.name}</a>`;
       });
       developersDOM.innerHTML = `Developers: ${devLinks.join(", ")}`;
       articleDOM.appendChild(developersDOM);
@@ -48,7 +51,7 @@ const PageDetail = (argument) => {
       // publishers
       const publishersDOM = document.createElement("p");
       const pubLinks = publishers.map((pub) => {
-        return `<a href="#pagelist/${pub.slug}">${pub.name}</a>`;
+        return `<a href="#pagelist/${pub.id}/publishers">${pub.name}</a>`;
       });
       publishersDOM.innerHTML = `Publishers: ${pubLinks.join(", ")}`;
       articleDOM.appendChild(publishersDOM);
@@ -57,7 +60,7 @@ const PageDetail = (argument) => {
       const platformsDOM = document.createElement("p");
 
       const platLinks = platforms.map((plat) => {
-        return `<a href="#pagelist/${plat.platform.name}">${plat.platform.name}</a>`;
+        return `<a href="#pagelist/${plat.platform.id}/platforms">${plat.platform.name}</a>`;
       });
       platformsDOM.innerHTML = `Platforms: ${platLinks.join(", ")}`;
       articleDOM.appendChild(platformsDOM);
@@ -65,7 +68,7 @@ const PageDetail = (argument) => {
       // genres
       const genresDOM = document.createElement("p");
       const genreLinks = genres.map((genre) => {
-        return `<a href="#pagelist/${genre.slug}">${genre.name}</a>`;
+        return `<a href="#pagelist/${genre.id}/genres">${genre.name}</a>`;
       });
       genresDOM.innerHTML = `Genres: ${genreLinks.join(", ")}`;
       articleDOM.appendChild(genresDOM);
@@ -73,7 +76,7 @@ const PageDetail = (argument) => {
       // tags
       const tagsDOM = document.createElement("p");
       const tagLinks = tags.map((tag) => {
-        return `<a href="#pagelist/${tag.slug}">${tag.name}</a>`;
+        return `<a href="#pagelist/${tag.id}/tags">${tag.name}</a>`;
       });
       tagsDOM.innerHTML = `Tags: ${tagLinks.join(", ")}`;
       articleDOM.appendChild(tagsDOM);
@@ -98,6 +101,18 @@ const PageDetail = (argument) => {
         metacriticDOM.innerHTML = `Metacritic score: ${metacritic}`;
         articleDOM.appendChild(metacriticDOM);
       }
+
+      // stores
+      const storesDOM = document.createElement("p");
+
+      const storeLinks = stores.map((sto) => {
+        const storeUrl = sto.store.domain.startsWith("http")
+          ? sto.store.domain
+          : `https://${sto.store.domain}`;
+        return `<a href="${storeUrl}">${sto.store.name}</a>`;
+      });
+      platformsDOM.innerHTML = `Stores: ${storeLinks.join(", ")}`;
+      articleDOM.appendChild(storesDOM);
 
       // screenshots
       const fetchScreenShot = (url, argument) => {
